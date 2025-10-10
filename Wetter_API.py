@@ -2,9 +2,19 @@ import requests
 import pygame
 import sys
 import io
+import os
 
 # === API Key und Ort ===
-api_key = "4bf98e075d88a2d3e40ee0655aa76d74"
+if not os.path.exists("key.txt"):
+
+    # Tokens in JSON-Datei speichern
+    api_key = input("Kein API-Key gespeichert. Bitte API-Key eingeben: ")
+    with open("key.txt", "w") as f:
+        f.write(api_key)
+
+with open("key.txt", "r") as f:
+    api_key = f.read()
+#"4bf98e075d88a2d3e40ee0655aa76d74"
 city = input("Welcher Ort: ")
 
 url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric&lang=de"
