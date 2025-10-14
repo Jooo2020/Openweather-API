@@ -16,19 +16,6 @@ if not os.path.exists("key.txt"):
 with open("key.txt", "r") as f:
     api_key = f.read()
 
-# === Wetterdaten extrahieren ===
-temp = data["main"]["temp"]
-feels_like = data["main"]["feels_like"]
-weather = data["weather"][0]["description"]
-humidity = data["main"]["humidity"]
-wind_speed = data["wind"]["speed"]
-
-# Icon laden (direkt ohne Pillow)
-icon_code = data["weather"][0]["icon"]
-icon_url = f"http://openweathermap.org/img/wn/{icon_code}@2x.png"
-icon_response = requests.get(icon_url)
-icon_surface = pygame.image.load(io.BytesIO(icon_response.content))
-
 # === Pygame Setup ===
 pygame.init()
 screen = pygame.display.set_mode((650, 450))
@@ -151,7 +138,7 @@ while running:
                         if load_weather_data(city_input.strip()):
                             current_city = city_input.strip()  # ← Ort erst hier aktualisieren
                         else:
-                            city_input = "❌ Ungültig!"
+                            city_input = "Ungültig!"
                             data_loaded = False
                         input_active = False
                         input_cleared = False
