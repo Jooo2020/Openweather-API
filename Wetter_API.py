@@ -1,6 +1,5 @@
 import requests
 import pygame
-import sys
 import io
 from datetime import datetime
 import os
@@ -46,13 +45,13 @@ forecast_list = []
 forecast_surfaces = []
 
 # === Hilfsfunktionen ===
-def weather_color(desc):
-    desc = desc.lower()
-    if "regen" in desc:
+def weather_color(description):
+    description = description.lower()
+    if "regen" in description:
         return (100, 149, 237)
-    elif "sonnig" in desc or "klar" in desc:
+    elif "sonnig" in description or "klar" in description:
         return (255, 223, 100)
-    elif "wolken" in desc:
+    elif "wolken" in description:
         return (169, 169, 169)
     else:
         return (200, 200, 200)
